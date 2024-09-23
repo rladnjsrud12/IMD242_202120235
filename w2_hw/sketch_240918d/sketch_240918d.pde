@@ -1,13 +1,12 @@
-int speed=3;
-int x=0;
-boolean flipped = false;
+float speed=3;
+float x=0;
 
 void setup() {
   size(1000, 700);
-  background(0);
 }
 
 void draw() {
+  background(mouseX, mouseY, 0);
   x=x+speed;
   fill(255);
   circle(x-170, 700, 100); //꼬리
@@ -22,23 +21,7 @@ void draw() {
   ellipse(x+50, 400, 40, 25); //코
   circle(x-10, 320, 50); //눈알
   circle(x+110, 320, 50); //눈알
-  
-  if (flipped) {
-    scale(-1, 1);
-    translate(-width, 0);
-  }
-  x += (flipped ? -speed : speed);
-  
-    if (x > width) {
-    x = width;
-  } else if (x < 0) {
-    x = 0;
-  }
 }
 
 void mousePressed (){
- if (mouseButton == LEFT) {
-    flipped = !flipped;}
-    background(mouseX, mouseY, 0);
-
 }
