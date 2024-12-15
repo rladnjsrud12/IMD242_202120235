@@ -1,14 +1,14 @@
 // 종횡비를 고정하고 싶을 경우: 아래 두 변수를 0이 아닌 원하는 종, 횡 비율값으로 설정.
 // 종횡비를 고정하고 싶지 않을 경우: 아래 두 변수 중 어느 하나라도 0으로 설정.
-const aspectW = 4;
-const aspectH = 3;
+const aspectW = 6;
+const aspectH = 4;
 // html에서 클래스명이 container-canvas인 첫 엘리먼트: 컨테이너 가져오기.
 const container = document.body.querySelector('.container-canvas');
 // 필요에 따라 이하에 변수 생성.
 
 let vid;
-let w = 64;
-let h = 48;
+let w = 53;
+let h = 35;
 let scl = 10;
 
 function setup() {
@@ -36,14 +36,14 @@ function setup() {
   }
   init();
   // createCanvas를 제외한 나머지 구문을 여기 혹은 init()에 작성.
+}
 
+// windowResized()에서 setup()에 준하는 구문을 실행해야할 경우를 대비해 init이라는 명칭의 함수를 만들어 둠.
+function init() {
   vid = createCapture(VIDEO);
   vid.size(w, h);
   vid.hide();
 }
-
-// windowResized()에서 setup()에 준하는 구문을 실행해야할 경우를 대비해 init이라는 명칭의 함수를 만들어 둠.
-function init() {}
 
 function draw() {
   background('white');
@@ -61,7 +61,7 @@ function draw() {
       let r = vid.pixels[index + 0];
       let g = vid.pixels[index + 1];
       let b = vid.pixels[index + 2];
-      let a = vid.pixels[index + 3];
+      // let a = vid.pixels[index + 3];
 
       let c = (r + g + b) / 3;
       let s = map(c, 0, 255, 0, 20);
@@ -72,10 +72,10 @@ function draw() {
       fill(255, 0, 0);
       ellipse(scl / 2 + (i + w) * scl, scl / 2 + k * scl, s, s);
 
-      fill(50, g, b);
+      fill(50, g, 30);
       ellipse(scl / 2 + i * scl, scl / 2 + (k + h) * scl, s, s);
 
-      fill(10);
+      fill(50);
       ellipse(scl / 2 + (i + w) * scl, scl / 2 + (k + h) * scl, s, s);
     }
   }
